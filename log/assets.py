@@ -1,106 +1,115 @@
-import logging
+
+
+"""枚举"""
+from log.GloaEnum import GloablEnum
+
+"""模块"""
 import os
 import datetime
+import logging
 
 class Logger:
-    def __init__(self, log_dir='D:/log', overwrite_logs=False):
-        self.log_dir = log_dir
-        self.logger = logging.getLogger()
-        self.logger.setLevel(logging.DEBUG)
-        self.formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        self.overwrite_logs = overwrite_logs
+    def __init__(self, log_dir=r'D:\log'):
+        self.folder_path = log_dir
+        self.log_folder_path = self._get_log_folder_path()
 
-        # Check if log directory exists, create it if not
-        os.makedirs(log_dir, exist_ok=True)
+        self._setup_logging()
 
-        self.log_folder = None
-        self.file_handlers = {}
+    def _setup_logging(self):
+        # 定义日志级别和格式
+        log_format = GloablEnum.LOG_FORMAT.value
+        log_level = {
+            GloablEnum.DEBUG.value: logging.DEBUG,
+            GloablEnum.INFO.value: logging.INFO,
+            GloablEnum.ERROR.value: logging.ERROR,
+            GloablEnum.CRITICAL.value: logging.CRITICAL,
+            GloablEnum.WARNING.value: logging.WARNING
+        }
+
+        # 设置主文件夹日志
+        main_loggers = [GloablEnum.DEBUG.value,
+                            GloablEnum.INFO.value,
+                            GloablEnum.ERROR.value,
+                            GloablEnum.CRITICAL.value,
+                            GloablEnum.WARNING.value]
+        main_log_paths = [os.path.join(self.folder_path,
+                                       f'{logger}.log') for logger in main_loggers]
+        for logger, log_path in zip(main_loggers, main_log_paths):
+            logger_instance = logging.getLogger(logger)
+            logger_instance.setLevel(log_level[logger])
+            file_handler = logging.FileHandler(log_path, mode='w')
+            file_handler.setLevel(log_level[logger])
+            formatter = logging.Formatter(log_format)
+            file_handler.setFormatter(formatter)
+            logger_instance.addHandler(file_handler)
+
+        # 设置子文件夹日志
+        log_folder_loggers = [GloablEnum.DEBUG.value,
+                                GloablEnum.INFO.value,
+                                GloablEnum.ERROR.value,
+                                GloablEnum.CRITICAL.value,
+                                GloablEnum.WARNING.value]
+        log_folder_log_paths = [os.path.join(self.log_folder_path,
+                                             f'{logger}.log') for logger in log_folder_loggers]
+        for logger, log_path in zip(log_folder_loggers, log_folder_log_paths):
+            logger_instance = logging.getLogger(f'{GloablEnum.LOG_FOLDER.value}{logger}')
+            logger_instance.setLevel(log_level[logger])
+            file_handler = logging.FileHandler(log_path, mode='a')
+            file_handler.setLevel(log_level[logger])
+            formatter = logging.Formatter(log_format)
+            file_handler.setFormatter(formatter)
+            logger_instance.addHandler(file_handler)
 
     def _get_log_folder_path(self):
-        today = datetime.date.today().strftime('%Y-%m-%d')
-        log_folder = os.path.join(self.log_dir, f'{today}log')
+        today = datetime.date.today().strftime(GloablEnum.YMD.value)
+        log_folder = os.path.join(self.folder_path, today)
         os.makedirs(log_folder, exist_ok=True)
         return log_folder
 
-    def _create_file_handler(self, log_level, mode):
-        log_folder = self._get_log_folder_path()
-        log_file = os.path.join(log_folder, f'{log_level}.log')
-        file_handler = logging.FileHandler(log_file, mode=mode)
-        file_handler.setLevel(logging.getLevelName(log_level.upper()))
-        file_handler.setFormatter(self.formatter)
-        return file_handler
+    def create_folder_and_files(self):
+        os.makedirs(self.folder_path, exist_ok=True)
+        os.makedirs(self.log_folder_path, exist_ok=True)
+        debug_log_path = os.path.join(self.folder_path, GloablEnum.DEBUG.value)
+        info_log_path = os.path.join(self.folder_path, GloablEnum.INFO.value)
+        open(debug_log_path, 'w').close()
+        open(info_log_path, 'w').close()
 
-    def _create_overwrite_file_handler(self, log_level):
-        return self._create_file_handler(log_level, mode='w')
+    def debug(self, message):
+        debug_logger = logging.getLogger(
+            GloablEnum.DEBUG.value)
+        debug_logger.debug(message)
+        log_folder_debug_logger = logging.getLogger(
+            GloablEnum.LOG_FOLDER_DEBUG.value)
+        log_folder_debug_logger.debug(message)
 
-    def _get_or_create_file_handler(self, log_level):
-        if self.log_folder is None or self.log_folder != self._get_log_folder_path():
-            self.log_folder = self._get_log_folder_path()
-            self.file_handlers.clear()
+    def info(self, message):
+        info_logger = logging.getLogger(
+            GloablEnum.INFO.value)
+        info_logger.info(message)
+        log_folder_info_logger = logging.getLogger(
+            GloablEnum.LOG_FOLDER_INFO.value)
+        log_folder_info_logger.info(message)
 
-        if log_level not in self.file_handlers:
-            if self.overwrite_logs:
-                file_handler = self._create_overwrite_file_handler(log_level)
-            else:
-                file_handler = self._create_file_handler(log_level, mode='a')
-            self.file_handlers[log_level] = file_handler
+    def error(self, message):
+        error_logger = logging.getLogger(
+            GloablEnum.ERROR.value)
+        error_logger.error(message)
+        log_folder_error_logger = logging.getLogger(
+            GloablEnum.LOG_FOLDER_ERROR.value)
+        log_folder_error_logger.error(message)
 
-        return self.file_handlers[log_level]
+    def critical(self, message):
+        critical_logger = logging.getLogger(
+            GloablEnum.CRITICAL.value)
+        critical_logger.critical(message)
+        log_folder_critical_logger = logging.getLogger(
+            GloablEnum.LOG_FOLDER_CRITICAL.value)
+        log_folder_critical_logger.critical(message)
 
-    def _get_or_create_overwrite_file_handler(self, log_level):
-        if self.log_folder is None or self.log_folder != self._get_log_folder_path():
-            self.log_folder = self._get_log_folder_path()
-            self.file_handlers.clear()
-
-        if log_level not in self.file_handlers:
-            file_handler = self._create_overwrite_file_handler(log_level)
-            self.file_handlers[log_level] = file_handler
-
-        return self.file_handlers[log_level]
-
-    def debug(self, msg):
-        if self.overwrite_logs:
-            file_handler = self._get_or_create_overwrite_file_handler('debug')
-        else:
-            file_handler = self._get_or_create_file_handler('debug')
-        self.logger.addHandler(file_handler)
-        self.logger.debug(msg)
-        self.logger.removeHandler(file_handler)
-
-    def info(self, msg):
-        if self.overwrite_logs:
-            file_handler = self._get_or_create_overwrite_file_handler('info')
-        else:
-            file_handler = self._get_or_create_file_handler('info')
-        self.logger.addHandler(file_handler)
-        self.logger.info(msg)
-        self.logger.removeHandler(file_handler)
-
-    def error(self, msg):
-        if self.overwrite_logs:
-            file_handler = self._get_or_create_overwrite_file_handler('error')
-        else:
-            file_handler = self._get_or_create_file_handler('error')
-        self.logger.addHandler(file_handler)
-        self.logger.error(msg)
-        self.logger.removeHandler(file_handler)
-
-    def critical(self, msg):
-        if self.overwrite_logs:
-            file_handler = self._get_or_create_overwrite_file_handler('critical')
-        else:
-            file_handler = self._get_or_create_file_handler('critical')
-        self.logger.addHandler(file_handler)
-        self.logger.critical(msg)
-        self.logger.removeHandler(file_handler)
-
-
-    def warning(self, msg):
-        if self.overwrite_logs:
-            file_handler = self._get_or_create_overwrite_file_handler('warning')
-        else:
-            file_handler = self._get_or_create_file_handler('warning')
-        self.logger.addHandler(file_handler)
-        self.logger.error(msg)
-        self.logger.removeHandler(file_handler)
-
+    def warning(self, message):
+        warning_logger = logging.getLogger(
+            GloablEnum.WARNING.value)
+        warning_logger.warning(message)
+        log_folder_warning_logger = logging.getLogger(
+            GloablEnum.LOG_FOLDER_WARNING.value)
+        log_folder_warning_logger.warning(message)

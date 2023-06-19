@@ -1,62 +1,43 @@
+"""模块"""
 import xlrd
 
 """枚举"""
-from exel_automation.readexel.GloaEnum import GloablEnum
-
+from GloaEnum.GloaEnum import EXEL
+from GloaEnum.GloaEnum import CONFIGURATION
+"""路径"""
+from exel_automation.getfile.get_assets import ConfigurationFile
+ConfigurationFile = ConfigurationFile()
+"""模块"""
+import json
 
 """日志"""
-from exel_automation.getfile.assets import FileInformation
 from log.assets import Logger
-log_path, config_path = FileInformation.get_data()
-logger = Logger(log_dir=log_path)
-adminUrl, clientUrl, excelPath = FileInformation.configpath_json()
 
+"""获取exel内容"""
+class TestExcel:
+    def __init__(self):
+        self.logger = Logger()
+        self.excelPath = ConfigurationFile.configuration_file(CONFIGURATION.EXECELPATH.value)
 
-class TestCase():
-    case_number = ""
-    case_name = ""
-    case_title = ""
-    api_url = ""
-    request_method = ""
-    main_api = ""
-    headers = ""
-    body = ""
-    execute = ""
-    assertion = ""
-    parameterize = ""
-    parameter_data = ""
-
-
-class ExcelFileReader:
-
-    def read_file(self, sheet_index=0, start_row=1):
-        workbook = xlrd.open_workbook(excelPath)
+    def read_file(self, sheet_index=0, row_index=1):
+        self.logger.info(f'{EXEL.START_EXCEL.value}')
+        workbook = xlrd.open_workbook(self.excelPath)
         sheet = workbook.sheet_by_index(sheet_index)
+        header = sheet.row_values(0)
+        result = []
+        for row in range(row_index, sheet.nrows):
+            row_data = sheet.row_values(row)
+            js_object = {}
+            for i in range(len(header)):
+                js_object[header[i]] = row_data[i]
 
-        test_cases = []
+            js_string = json.dumps(js_object, ensure_ascii=False)
+            self.logger.debug(f'{EXEL.LINE.value}{row}{EXEL.LINE_OLL.value}{js_object}')
+            result.append(js_string)
+        self.logger.info(f'{EXEL.OVER.value}')
+        return result
 
-        header = [
-            GloablEnum.CASE_NUMBER.value,
-            GloablEnum.CASE_NAME.value,
-            GloablEnum.CASE_TITLE.value,
-            GloablEnum.API_URL.value,
-            GloablEnum.REQUEST_METHOD.value,
-            GloablEnum.MAIN_API.value,
-            GloablEnum.HEADERS.value,
-            GloablEnum.BODY.value,
-            GloablEnum.EXECUTE.value,
-            GloablEnum.ASSERTION.value,
-            GloablEnum.PARAMETERIZE.value,
-            GloablEnum.PARAMETER_DATA.value
-        ]
 
-        for row_index in range(start_row, sheet.nrows):
-            row_data = sheet.row_values(row_index)
-            test_case = TestCase()
-            logger.debug(f'{row_index}{GloablEnum.EXEL_ROW_INDEX.value}{row_data}')
-            for index, attr_name in enumerate(header):
-                setattr(test_case, attr_name, row_data[index])
 
-            test_cases.append(test_case)
 
-        return test_cases
+

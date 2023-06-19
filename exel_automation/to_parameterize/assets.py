@@ -1,44 +1,26 @@
 import json
+import re
+class ToParameterize:
+    def replace_parameters(self, data, parameters, response_body):
+        updated_data = json.loads(json.dumps(data))
 
-
-"""枚举"""
-from exel_automation.to_parameterize.GloaEnum import GloablEnum
-"""日志"""
-from exel_automation.getfile.assets import FileInformation
-from log.assets import Logger
-
-log_path, config_path = FileInformation.get_data()
-logger = Logger(log_dir=log_path)
-adminUrl, clientUrl, excelPath = FileInformation.configpath_json()
-
-
-class ParameterReplacer:
-
-    @staticmethod
-    def replace_parameters(body, params, data):
-        body_str = json.dumps(body)  # Convert body dictionary to a string
-        for param in params:
-            logger.debug(f'查询params参数内容：{params}')
-            logger.debug(f'查询params参数的类型：{type(params)}')
-            param_name = param["paramName"]
-            param_value = ParameterReplacer.get_param_value(param["paramsEq"], data)
-            if param_value is not None:
-                body_str = body_str.replace("${" + param_name + "}", str(param_value))
-        body = json.loads(body_str)  # Convert the updated string back to a dictionary
-        return body
-
-    @staticmethod
-    def get_param_value(expression, data):
-        try:
-            parts = expression.split('.')
-            value = data
-            for part in parts:
-                if '[' in part:
-                    key, index = part.split('[')
-                    index = int(index.strip(']'))
-                    value = value[key][index]
-                else:
-                    value = value[part]
-            return value
-        except (KeyError, IndexError, TypeError):
-            return None
+        for key, value in updated_data.items():
+            # print(value)
+            if isinstance(value, str):
+                for param in parameters:
+                    param_name = param['paramName']
+                    param_from = param['paramFrom']
+                    param_eq = param['paramsEq']
+                    if f"${{{param_name}}}" in value:
+                        if param_from == 'responseBody':
+                            matched_values = []
+                            pattern = rf"\"{re.escape(param_eq)}\"\s*:\s*\"([^\"]+)\""
+                            match = re.search(pattern, json.dumps(response_body))
+                            if match:
+                                updated_data[key] = value.replace(f"${{{param_name}}}", match.group(1))
+                        elif param_from == 'requestBody':
+                            match = re.search(rf"\"{re.escape(param_eq)}\"\s*:\s*\"([^\"]+)\"",
+                                              json.dumps(updated_data))
+                            if match:
+                                updated_data[key] = value.replace(f"${{{param_name}}}", match.group(1))
+        return updated_data

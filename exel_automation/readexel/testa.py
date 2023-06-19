@@ -1,33 +1,50 @@
-"""
-需求：
-模块：xlrd
-读取exel文件
-对exel文件里第二行的内容进行封装，并复用此对象【注：第二行，第三行也可使用此对象】每行有12个对象
-下面是对象的名称：
-    self.case_number = ""
-    self.case_name = ""
-    self.case_title = ""
-    self.api_url =""
-    self.request_method = ""
-    self.main_api = ""
-    self.headers =""
-    self.body = ""
-    self.execute = ""
-    self.assertion = ""
-    self.parameterize = ""
-    self.parameter_data = ""
-文件路劲：
-    'D:\\api-auto-test.xls'
-"""
-from exel_automation.readexel.assets import ExcelFileReader
 
-
-
-if __name__ == '__main__':
-    reader = ExcelFileReader()
-    test_cases = reader.read_file(sheet_index=0, start_row=1)
-    print(test_cases)
-    for test_case in test_cases:
-        print(test_case.__dict__)
-        print(test_case.__dict__["case_number"])
+# class TestCase():
+#     case_number = ""
+#     case_name = ""
+#     case_title = ""
+#     api_url = ""
+#     request_method = ""
+#     main_api = ""
+#     headers = ""
+#     body = ""
+#     execute = ""
+#     assertion = ""
+#     parameterize = ""
+#     parameter_data = ""
+#
+#
+# class ExcelFileReader:
+#
+#     def read_file(self, sheet_index=0, start_row=1):
+#         workbook = xlrd.open_workbook(excelPath)
+#         sheet = workbook.sheet_by_index(sheet_index)
+#
+#         test_cases = []
+#
+#         header = [
+#             GloablEnum.CASE_NUMBER.value,
+#             GloablEnum.CASE_NAME.value,
+#             GloablEnum.CASE_TITLE.value,
+#             GloablEnum.API_URL.value,
+#             GloablEnum.REQUEST_METHOD.value,
+#             GloablEnum.MAIN_API.value,
+#             GloablEnum.HEADERS.value,
+#             GloablEnum.BODY.value,
+#             GloablEnum.EXECUTE.value,
+#             GloablEnum.ASSERTION.value,
+#             GloablEnum.PARAMETERIZE.value,
+#             GloablEnum.PARAMETER_DATA.value
+#         ]
+#
+#         for row_index in range(start_row, sheet.nrows):
+#             row_data = sheet.row_values(row_index)
+#             test_case = TestCase()
+#             logger.debug(f'{row_index}{GloablEnum.EXEL_ROW_INDEX.value}{row_data}')
+#             for index, attr_name in enumerate(header):
+#                 setattr(test_case, attr_name, row_data[index])
+#
+#             test_cases.append(test_case)
+#
+#         return test_cases
 

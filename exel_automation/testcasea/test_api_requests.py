@@ -71,38 +71,19 @@ class Test_case:
             return
 
         try:
-            if headers is None or headers == '':
+            if headers is None:
                 response = requests.request(request_method, clientUrl + api_url, json=body, proxies=proxies)
-                response_content = (
-                    response.json()
-                    if response.headers.get('content-type') == 'application/json'
-                    else response.text
-                )
-                if isinstance(response_content, str):
-                    try:
-                        response_content = json.loads(response_content)
-                    except json.JSONDecodeError:
-                        logger.info(f'{response_content}')
                 assertion_config = json.loads(assertion)
-                assertion_template.assertions(response_content, assertion_config)
+                logger.debug(f'测试断言{assertion_config}')
+                assertion_template.assertions(response.json(), assertion_config)
 
             else:
-                response = requests.request(request_method, clientUrl + api_url, json=body, headers=headers, proxies=proxies)
-                response_content = (
-                    response.json()
-                    if response.headers.get('content-type') == 'application/json'
-                    else response.text
-                )
-                if isinstance(response_content, str):
-                    try:
-                        response_content = json.loads(response_content)
-                    except json.JSONDecodeError:
-                        logger.error(f'{EXAMPLE.NOJSON.value}{response_content}')
+                    response = requests.request(request_method, clientUrl + api_url, json=body, headers=headers, proxies=proxies)
+                    logger.debug(f'这是第{case_number}{case_title}的请求体{body}')
                     assertion_config = json.loads(assertion)
-                    assertion_template.assertions(response_content, assertion_config)
+                    logger.debug(f'测试断言{assertion_config}')
+                    assertion_template.assertions(response.json(), assertion_config)
             logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
-
-
             # 替换后续测试用例中的占位符
             for tc in self.test_cases:
                 if tc[EXEL.CASE_NUMBER.value] > case_number:
@@ -117,5 +98,5 @@ class Test_case:
                 logger.info(f'{EXAMPLE.CONTINUE.value}')
                 logger.debug(EXAMPLE.MISTAKE.value + str(e))
 
-        logger.info(f'{EXAMPLE.FINISH.value}')
+        logger.info(f'{case_number}{case_title}{EXAMPLE.FINISH.value}')
 

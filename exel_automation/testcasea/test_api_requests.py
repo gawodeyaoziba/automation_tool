@@ -27,10 +27,20 @@ assertion_template = AssertionTemplate()
 """配置"""
 from exel_automation.testcasea.config import proxies
 
+"""时间"""
+from Time.assets import Time
+timestart = Time()
+
+"""生成测试报告"""
+from exel_automation.testcasea.Report.Report import Report
+Report = Report()
+
 """模块"""
 import pytest
 import requests
 import json
+import time
+
 
 class Test_case:
     test_cases = testexcel.read_file()
@@ -72,18 +82,35 @@ class Test_case:
 
         try:
             if headers is None:
+                timestar = timestart.get_now_datetime()
+                start = time.time()
                 response = requests.request(request_method, clientUrl + api_url, json=body, proxies=proxies)
                 assertion_config = json.loads(assertion)
-                logger.debug(f'测试断言{assertion_config}')
-                assertion_template.assertions(response.json(), assertion_config)
+                try:
+                    assertion_template.assertions(response.json(), assertion_config)
+                    state = True
+                except Exception as e:
+                    state = False
+                Finish = time.time()
+                timefinish = timestart.get_now_datetime()
+                Report.testing_report(case_name, state, timestar, timefinish, Finish - start)
+                logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
 
             else:
+                    timestar = timestart.get_now_datetime()
+                    start = time.time()
                     response = requests.request(request_method, clientUrl + api_url, json=body, headers=headers, proxies=proxies)
                     logger.debug(f'这是第{case_number}{case_title}的请求体{body}')
                     assertion_config = json.loads(assertion)
-                    logger.debug(f'测试断言{assertion_config}')
-                    assertion_template.assertions(response.json(), assertion_config)
-            logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
+                    try:
+                        assertion_template.assertions(response.json(), assertion_config)
+                        state = True
+                    except Exception as e:
+                        state = False
+                    Finish = time.time()
+                    timefinish = timestart.get_now_datetime()
+                    Report.testing_report(case_name, state, timestar, timefinish, Finish-start)
+                    logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
             # 替换后续测试用例中的占位符
             for tc in self.test_cases:
                 if tc[EXEL.CASE_NUMBER.value] > case_number:

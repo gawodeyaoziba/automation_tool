@@ -81,10 +81,31 @@ class Test_case:
             return
 
         try:
-            if headers is None:
+            if not headers:
+
+                timestar = timestart.get_now_datetime()
+                start = int(time.time() * 1000)
+                start_time = round(start, 2)
+                response = requests.request(request_method, clientUrl + api_url, json=body, proxies=proxies)
+                logger.debug(f'请求头{headers}')
+                logger.debug(f'url{clientUrl + api_url}')
+                logger.debug(f'请求体{body}')
+                assertion_config = json.loads(assertion)
+                try:
+                    assertion_template.assertions(response.json(), assertion_config)
+                    state = True
+                except Exception as e:
+                    state = False
+                Finish = int(time.time() * 1000)
+                Finish_time = round(Finish, 2)
+                timefinish = timestart.get_now_datetime()
+                Report.testing_report(case_name, state, timestar, timefinish, Finish_time-start_time)
+                logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
+            else:
+                headers_dict = json.loads(headers)
                 timestar = timestart.get_now_datetime()
                 start = time.time()
-                response = requests.request(request_method, clientUrl + api_url, json=body, proxies=proxies)
+                response = requests.request(request_method, clientUrl + api_url, json=body, proxies=proxies, headers=headers_dict)
                 assertion_config = json.loads(assertion)
                 try:
                     assertion_template.assertions(response.json(), assertion_config)
@@ -93,24 +114,9 @@ class Test_case:
                     state = False
                 Finish = time.time()
                 timefinish = timestart.get_now_datetime()
-                Report.testing_report(case_name, state, timestar, timefinish, Finish - start)
+                Report.testing_report(case_name, state, timestar, timefinish, Finish-start)
                 logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
 
-            else:
-                    timestar = timestart.get_now_datetime()
-                    start = time.time()
-                    response = requests.request(request_method, clientUrl + api_url, json=body, headers=headers, proxies=proxies)
-                    logger.debug(f'这是第{case_number}{case_title}的请求体{body}')
-                    assertion_config = json.loads(assertion)
-                    try:
-                        assertion_template.assertions(response.json(), assertion_config)
-                        state = True
-                    except Exception as e:
-                        state = False
-                    Finish = time.time()
-                    timefinish = timestart.get_now_datetime()
-                    Report.testing_report(case_name, state, timestar, timefinish, Finish-start)
-                    logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
             # 替换后续测试用例中的占位符
             for tc in self.test_cases:
                 if tc[EXEL.CASE_NUMBER.value] > case_number:
@@ -126,4 +132,8 @@ class Test_case:
                 logger.debug(EXAMPLE.MISTAKE.value + str(e))
 
         logger.info(f'{case_number}{case_title}{EXAMPLE.FINISH.value}')
+
+
+
+
 

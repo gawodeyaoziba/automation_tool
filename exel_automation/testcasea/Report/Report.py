@@ -37,7 +37,7 @@ class Report:
             json.dump(apiRunTimePath, file)
             file.write('\n')
 
-        logger.info(f"报告信息已追加到文件 '{self.apiRunTimePath}'")
+        logger.info(f"报告信息已追加到文件")
 
 
 

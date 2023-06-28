@@ -56,7 +56,7 @@ class EXEL(Enum):
     ASSERTION = "断言内容"                   # assertion
     PARAMETERIZE = "是否参数化"             # parameterize
     PARAMETER_DATA = "参数化数据"         # parameter_data
-
+    URL = 'url'
     """exel状态"""
     START_EXCEL= '开始获取excel文件内容'
     LINE = '这是excel文件第'
@@ -90,6 +90,7 @@ class ASSERTION(Enum):
     ABNORMAL = '断言内容异常，请查看输入的断言值'
 
 class EXAMPLE(Enum):
+
     START = '开始执行用例'
     NULL = '断言内容不能为空'
     YES = '是'

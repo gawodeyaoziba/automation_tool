@@ -25,9 +25,12 @@ class Replace:
                 if tc[EXEL.CASE_NUMBER.value] > case_number:
                     if isinstance(response, dict):
                         replace_data = toparameterize.replace_parameters(tc, parameter_data, response)
+                        tc.update(replace_data)
                     else:
                         replace_data = toparameterize.replace_parameters(tc, parameter_data, response.json())
-                    tc.update(replace_data)
+                        tc.update(replace_data)
+
+
         except Exception as e:
             logger.error(f"{EXAMPLE.STOP.value}: {case_number} {case_name} {str(e)}")
             if main_api == EXAMPLE.YES.value:
@@ -37,4 +40,3 @@ class Replace:
                 logger.debug(EXAMPLE.MISTAKE.value + str(e))
 
         logger.info(f'{case_number}{case_title}{EXAMPLE.FINISH.value}')
-

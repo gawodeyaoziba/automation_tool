@@ -16,7 +16,8 @@ logger = Logger()
 """生成测试报告"""
 from exel_automation.testcasea.Report.Report import Report
 Report = Report()
-
+"""代理"""
+from exel_automation.testcasea.config import proxies
 """模块"""
 import time
 import requests
@@ -64,7 +65,7 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
 
-        response = requests.request(request_method, url, json=body, headers=headers_dict)
+        response = requests.request(request_method, url, json=body, headers=headers_dict, proxies=proxies)
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)

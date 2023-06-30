@@ -1,0 +1,16 @@
+[32mINFO    [0m info:assets.py:99 开始执行用例3.0下注dice
+[32mINFO    [0m log_folder_info:assets.py:102 开始执行用例3.0下注dice
+[35mDEBUG   [0m debug:assets.py:91 这是第3.0下注dice的请求体{'bet_amount': 1, 'direction': 'small', 'prediction': 1, 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[35mDEBUG   [0m log_folder_debug:assets.py:94 这是第3.0下注dice的请求体{'bet_amount': 1, 'direction': 'small', 'prediction': 1, 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[32mINFO    [0m info:assets.py:99 响应值:200==断言值200
+[32mINFO    [0m log_folder_info:assets.py:102 响应值:200==断言值200
+[32mINFO    [0m info:assets.py:99 断言成功
+[32mINFO    [0m log_folder_info:assets.py:102 断言成功
+[35mDEBUG   [0m debug:assets.py:91 True
+[35mDEBUG   [0m log_folder_debug:assets.py:94 True
+[32mINFO    [0m info:assets.py:99 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m log_folder_info:assets.py:102 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m info:assets.py:99 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961743502d85917ec080', 'game_id': 'dice', 'game_name': 'Dice', 'channel': 'global', 'balance': 999.0, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'lost', 'state': 'done', 'multiplier': 97.5, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 0.0, 'currency': 'BRL', 'f_seed': ['16_ZtPwM5YecnLPdwkJnHg8v', '4695bec454efe7266146df48bf8bc90f900e4b52b22768a810a74bddbac1574e'], 'next_hash': 'f878c0211aa074aee47c68f41799ce6c6592a7eecffcd12ab84e8bcaf4e50123', 'create_at': '2023-06-21T06:17:59.428+00:00', 'update_at': '2023-06-21T06:17:59.428+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': True, 'spread_parent': None, 'ock_id': None, 'prediction': 1, 'lucky_number': 16, 'direction': 'small'}, 'total': None}
+[32mINFO    [0m log_folder_info:assets.py:102 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961743502d85917ec080', 'game_id': 'dice', 'game_name': 'Dice', 'channel': 'global', 'balance': 999.0, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'lost', 'state': 'done', 'multiplier': 97.5, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 0.0, 'currency': 'BRL', 'f_seed': ['16_ZtPwM5YecnLPdwkJnHg8v', '4695bec454efe7266146df48bf8bc90f900e4b52b22768a810a74bddbac1574e'], 'next_hash': 'f878c0211aa074aee47c68f41799ce6c6592a7eecffcd12ab84e8bcaf4e50123', 'create_at': '2023-06-21T06:17:59.428+00:00', 'update_at': '2023-06-21T06:17:59.428+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': True, 'spread_parent': None, 'ock_id': None, 'prediction': 1, 'lucky_number': 16, 'direction': 'small'}, 'total': None}
+[32mINFO    [0m info:assets.py:99 3.0下注dice执行用例结束
+[32mINFO    [0m log_folder_info:assets.py:102 3.0下注dice执行用例结束

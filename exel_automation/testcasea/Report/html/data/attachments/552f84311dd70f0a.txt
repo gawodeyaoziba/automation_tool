@@ -1,0 +1,16 @@
+[32mINFO    [0m info:assets.py:99 开始执行用例5.0下注ring
+[32mINFO    [0m log_folder_info:assets.py:102 开始执行用例5.0下注ring
+[35mDEBUG   [0m debug:assets.py:91 这是第5.0下注ring的请求体{'bet_amount': 1, 'sub_level': 'three', 'difficult_level': 'general', 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[35mDEBUG   [0m log_folder_debug:assets.py:94 这是第5.0下注ring的请求体{'bet_amount': 1, 'sub_level': 'three', 'difficult_level': 'general', 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[32mINFO    [0m info:assets.py:99 响应值:200==断言值200
+[32mINFO    [0m log_folder_info:assets.py:102 响应值:200==断言值200
+[32mINFO    [0m info:assets.py:99 断言成功
+[32mINFO    [0m log_folder_info:assets.py:102 断言成功
+[35mDEBUG   [0m debug:assets.py:91 True
+[35mDEBUG   [0m log_folder_debug:assets.py:94 True
+[32mINFO    [0m info:assets.py:99 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m log_folder_info:assets.py:102 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m info:assets.py:99 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961743502d85917ec083', 'game_id': 'ring', 'game_name': 'Ring', 'channel': 'global', 'balance': 998.96, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'win', 'state': 'done', 'multiplier': 1.96, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 1.96, 'currency': 'BRL', 'f_seed': ['9275_Veg_G3gobcJQnINNNVHjq', 'b5fe38aec7fc3f5269bb8fcbe1d38dce12143819fd2ee1fe9e0b591ef0660a92'], 'next_hash': None, 'create_at': '2023-06-21T06:17:59.926+00:00', 'update_at': '2023-06-21T06:17:59.926+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': False, 'spread_parent': None, 'ock_id': None, 'rate': 1.96, 'game_result': 'yellow'}, 'total': None}
+[32mINFO    [0m log_folder_info:assets.py:102 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961743502d85917ec083', 'game_id': 'ring', 'game_name': 'Ring', 'channel': 'global', 'balance': 998.96, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'win', 'state': 'done', 'multiplier': 1.96, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 1.96, 'currency': 'BRL', 'f_seed': ['9275_Veg_G3gobcJQnINNNVHjq', 'b5fe38aec7fc3f5269bb8fcbe1d38dce12143819fd2ee1fe9e0b591ef0660a92'], 'next_hash': None, 'create_at': '2023-06-21T06:17:59.926+00:00', 'update_at': '2023-06-21T06:17:59.926+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': False, 'spread_parent': None, 'ock_id': None, 'rate': 1.96, 'game_result': 'yellow'}, 'total': None}
+[32mINFO    [0m info:assets.py:99 5.0下注ring执行用例结束
+[32mINFO    [0m log_folder_info:assets.py:102 5.0下注ring执行用例结束

@@ -1,0 +1,16 @@
+[32mINFO    [0m info:assets.py:99 开始执行用例7.0下注plinko
+[32mINFO    [0m log_folder_info:assets.py:102 开始执行用例7.0下注plinko
+[35mDEBUG   [0m debug:assets.py:91 这是第7.0下注plinko的请求体{'bet_amount': 1, 'color': 'blue', 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[35mDEBUG   [0m log_folder_debug:assets.py:94 这是第7.0下注plinko的请求体{'bet_amount': 1, 'color': 'blue', 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[32mINFO    [0m info:assets.py:99 响应值:200==断言值200
+[32mINFO    [0m log_folder_info:assets.py:102 响应值:200==断言值200
+[32mINFO    [0m info:assets.py:99 断言成功
+[32mINFO    [0m log_folder_info:assets.py:102 断言成功
+[35mDEBUG   [0m debug:assets.py:91 True
+[35mDEBUG   [0m log_folder_debug:assets.py:94 True
+[32mINFO    [0m info:assets.py:99 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m log_folder_info:assets.py:102 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m info:assets.py:99 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961843502d85917ec085', 'game_id': 'plinko', 'game_name': 'Plinko', 'channel': 'global', 'balance': 998.16, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'win', 'state': 'done', 'multiplier': 1.1, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 1.1, 'currency': 'BRL', 'f_seed': ['0010110010000101_FqNn6G5gejnbEASuhLNKt', '3a7a1f37ef3ee73baf0c7763fe1bdb279e1056baec17708b73bf61c1945d8649'], 'next_hash': 'a7babf9716c3223fc5f06685b7098753fc20b13d64f352b303b8afbd77479a32', 'create_at': '2023-06-21T06:18:00.347+00:00', 'update_at': '2023-06-21T06:18:00.347+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': False, 'spread_parent': None, 'ock_id': None, 'color': 'blue'}, 'total': None}
+[32mINFO    [0m log_folder_info:assets.py:102 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961843502d85917ec085', 'game_id': 'plinko', 'game_name': 'Plinko', 'channel': 'global', 'balance': 998.16, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'win', 'state': 'done', 'multiplier': 1.1, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 1.1, 'currency': 'BRL', 'f_seed': ['0010110010000101_FqNn6G5gejnbEASuhLNKt', '3a7a1f37ef3ee73baf0c7763fe1bdb279e1056baec17708b73bf61c1945d8649'], 'next_hash': 'a7babf9716c3223fc5f06685b7098753fc20b13d64f352b303b8afbd77479a32', 'create_at': '2023-06-21T06:18:00.347+00:00', 'update_at': '2023-06-21T06:18:00.347+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': False, 'spread_parent': None, 'ock_id': None, 'color': 'blue'}, 'total': None}
+[32mINFO    [0m info:assets.py:99 7.0下注plinko执行用例结束
+[32mINFO    [0m log_folder_info:assets.py:102 7.0下注plinko执行用例结束

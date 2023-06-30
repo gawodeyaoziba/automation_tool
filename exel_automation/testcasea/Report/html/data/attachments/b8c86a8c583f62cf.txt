@@ -1,0 +1,16 @@
+[32mINFO    [0m info:assets.py:99 开始执行用例6.0下注cryptos
+[32mINFO    [0m log_folder_info:assets.py:102 开始执行用例6.0下注cryptos
+[35mDEBUG   [0m debug:assets.py:91 这是第6.0下注cryptos的请求体{'bet_amount': 1, 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[35mDEBUG   [0m log_folder_debug:assets.py:94 这是第6.0下注cryptos的请求体{'bet_amount': 1, 'token': '7d3d2dd38f9a45c7b060b3aec39b02ee', 'user_id': '648adef28757d12eacae6618'}
+[32mINFO    [0m info:assets.py:99 响应值:200==断言值200
+[32mINFO    [0m log_folder_info:assets.py:102 响应值:200==断言值200
+[32mINFO    [0m info:assets.py:99 断言成功
+[32mINFO    [0m log_folder_info:assets.py:102 断言成功
+[35mDEBUG   [0m debug:assets.py:91 True
+[35mDEBUG   [0m log_folder_debug:assets.py:94 True
+[32mINFO    [0m info:assets.py:99 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m log_folder_info:assets.py:102 报告信息已追加到文件 'd:/api-runtime.json'
+[32mINFO    [0m info:assets.py:99 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961743502d85917ec084', 'game_id': 'fierybot', 'game_name': 'Fierybot', 'channel': 'global', 'balance': 998.06, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'win', 'state': 'done', 'multiplier': 0.1, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 0.1, 'currency': 'BRL', 'f_seed': ['40018_KEq06aUkac9e2BZpupx1E', 'e342250c3e0a04c8cc73c0c0c484e30eb19f39910543311f30f2597e1cff2c9c'], 'next_hash': None, 'create_at': '2023-06-21T06:18:00.033+00:00', 'update_at': '2023-06-21T06:18:00.033+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': False, 'spread_parent': None, 'ock_id': None, 'rate': 0.1, 'cryptos_result': '32656'}, 'total': None}
+[32mINFO    [0m log_folder_info:assets.py:102 这是响应的内容{'code': 200, 'message': '', 'data': {'_id': '6492961743502d85917ec084', 'game_id': 'fierybot', 'game_name': 'Fierybot', 'channel': 'global', 'balance': 998.06, 'user_id': '648adef28757d12eacae6618', 'user_name': 'User9710559477', 'result': 'win', 'state': 'done', 'multiplier': 0.1, 'bet_amount': 1.0, 'bet_actual_amount': 1.0, 'pay_out': 0.1, 'currency': 'BRL', 'f_seed': ['40018_KEq06aUkac9e2BZpupx1E', 'e342250c3e0a04c8cc73c0c0c484e30eb19f39910543311f30f2597e1cff2c9c'], 'next_hash': None, 'create_at': '2023-06-21T06:18:00.033+00:00', 'update_at': '2023-06-21T06:18:00.033+00:00', 'fee_amount': 0.0, 'fee_rate': 0.0, 'is_first': False, 'spread_parent': None, 'ock_id': None, 'rate': 0.1, 'cryptos_result': '32656'}, 'total': None}
+[32mINFO    [0m info:assets.py:99 6.0下注cryptos执行用例结束
+[32mINFO    [0m log_folder_info:assets.py:102 6.0下注cryptos执行用例结束

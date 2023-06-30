@@ -1,0 +1,4 @@
+[32mINFO    [0m info:assets.py:99 开始执行用例5.0下注ring
+[32mINFO    [0m log_folder_info:assets.py:102 开始执行用例5.0下注ring
+[1m[31mERROR   [0m error:assets.py:107 主流程报错了所以停止了运行: 5.0 user_ring HTTPSConnectionPool(host='b3-api.pre-release.xyz', port=443): Max retries exceeded with url: /game/ring/bet (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)')))
+[1m[31mERROR   [0m log_folder_error:assets.py:110 主流程报错了所以停止了运行: 5.0 user_ring HTTPSConnectionPool(host='b3-api.pre-release.xyz', port=443): Max retries exceeded with url: /game/ring/bet (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)')))

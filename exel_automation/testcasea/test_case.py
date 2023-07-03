@@ -26,12 +26,10 @@ import json
 import requests
 import urllib.request
 proxies = urllib.request.getproxies()
+
+
 """接口请求方式单独封装处理"""
 class Implement:
-
-
-
-
     def no_headers(self, case_number, request_method, url, body, headers, assertion, case_name, case_title):
         timestar = timestart.get_now_datetime()
 

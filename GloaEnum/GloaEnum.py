@@ -29,6 +29,7 @@ class FILEINFORMATION(Enum):
     REPORTPATH = 'reportPath'  # 测试报告路径
     CONFIGPATH = 'configPath'  # 配置文件路径
     APIRUNTIMEPATH = 'apiRunTimePath'  # 测试结果路径
+    PROXYCONFIGPATH = 'proxyConfigPath' # 代理文件路径
 
 
 """configuration配置文件"""

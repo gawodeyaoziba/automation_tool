@@ -17,14 +17,20 @@ logger = Logger()
 from exel_automation.testcasea.Report.Report import Report
 Report = Report()
 """代理"""
-from exel_automation.testcasea.config import proxies
+from Clash_yaml.assets import ClashProxyHandler
+ClashProxyHandler = ClashProxyHandler()
+
 """模块"""
 import time
-import requests
 import json
-
+import requests
+import urllib.request
+proxies = urllib.request.getproxies()
 """接口请求方式单独封装处理"""
 class Implement:
+
+
+
 
     def no_headers(self, case_number, request_method, url, body, headers, assertion, case_name, case_title):
         timestar = timestart.get_now_datetime()
@@ -35,7 +41,7 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.BODY.value}:{case_number}{body}')
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
-        response = requests.request(request_method, url, json=body)
+        response = requests.request(request_method, url, json=body, proxies=ClashProxyHandler.get_proxies())
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)
@@ -65,7 +71,7 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
 
-        response = requests.request(request_method, url, json=body, headers=headers_dict, proxies=proxies)
+        response = requests.request(request_method, url, json=body, headers=headers_dict, proxies=ClashProxyHandler.get_proxies())
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)

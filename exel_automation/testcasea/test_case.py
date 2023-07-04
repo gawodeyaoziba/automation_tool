@@ -38,7 +38,7 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.BODY.value}:{case_number}{body}')
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
-        response = requests.request(request_method, url, json=body)
+        response = requests.request(request_method, url, json=body, proxies=proxies)
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)
@@ -68,7 +68,7 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
 
-        response = requests.request(request_method, url, json=body, headers=headers_dict)
+        response = requests.request(request_method, url, json=body, headers=headers_dict, proxies=proxies)
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)
@@ -89,7 +89,7 @@ class Implement:
 
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
-        response = requests.request(request_method, url)
+        response = requests.request(request_method, url, proxies=proxies)
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)

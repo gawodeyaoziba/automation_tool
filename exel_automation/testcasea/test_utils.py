@@ -15,10 +15,15 @@ logger = Logger()
 class Replace:
     def replace(self, case_number, request_method, url, body, headers, assertion, case_name, parameter_data, case_title, test_cases, main_api):
         try:
+
+
             if not headers:
-                response = implement.no_headers(case_number, request_method, url, body, headers, assertion, case_name, case_title)
+                response = implement.post_no_headers(case_number, request_method, url, body, headers, assertion, case_name, case_title)
             else:
-                response = implement.yes_headers(headers, request_method, url, body, assertion, case_name, case_title, case_number)
+                response = implement.post_yes_headers(headers, request_method, url, body, assertion, case_name, case_title, case_number)
+
+            # if request_method == 'get':
+            #     response = implement.get_headers(request_method, url, assertion, case_name, case_title, case_number)
 
             # 替换后续测试用例中的占位符
             for tc in test_cases:

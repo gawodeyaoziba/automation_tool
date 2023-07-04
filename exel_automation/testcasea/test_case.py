@@ -30,7 +30,7 @@ proxies = urllib.request.getproxies()
 
 """接口请求方式单独封装处理"""
 class Implement:
-    def no_headers(self, case_number, request_method, url, body, headers, assertion, case_name, case_title):
+    def post_no_headers(self, case_number, request_method, url, body, headers, assertion, case_name, case_title):
         timestar = timestart.get_now_datetime()
 
         start = int(time.time() * 1000)
@@ -57,7 +57,7 @@ class Implement:
         logger.info(f'{EXAMPLE.RESPONSE.value}{response.json()}')
         return response.json()
 
-    def yes_headers(self, headers, request_method, url, body, assertion, case_name, case_title, case_number):
+    def post_yes_headers(self, headers, request_method, url, body, assertion, case_name, case_title, case_number):
         headers_dict = json.loads(headers)
 
         timestar = timestart.get_now_datetime()
@@ -70,6 +70,27 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
 
         response = requests.request(request_method, url, json=body, headers=headers_dict, proxies=ClashProxyHandler.get_proxies())
+        assertion_config = json.loads(assertion)
+        try:
+            assertion_template.assertions(response.json(), assertion_config)
+            state = True
+        except Exception as e:
+            state = False
+        Finish = int(time.time() * 1000)
+        Finish_time = round(Finish, 2)
+
+        timefinish = timestart.get_now_datetime()
+        Report.testing_report(case_name, state, timestar, timefinish, Finish_time - start_time)
+        return response.json()
+
+    def get_headers(self, request_method, url, assertion, case_name, case_title, case_number):
+        timestar = timestart.get_now_datetime()
+        start = int(time.time() * 1000)
+        start_time = round(start, 2)
+
+        logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
+        logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
+        response = requests.request(request_method, url, proxies=ClashProxyHandler.get_proxies())
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)

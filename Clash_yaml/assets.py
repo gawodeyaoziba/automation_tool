@@ -18,3 +18,7 @@ class ClashProxyHandler:
     def get_proxies(self):
         return self.proxies[0] if self.proxies else {}
 
+if __name__ == '__main__':
+    x = ClashProxyHandler()
+    x.get_proxies()
+    print(x.get_proxies())

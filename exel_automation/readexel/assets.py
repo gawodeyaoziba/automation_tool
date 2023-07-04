@@ -15,6 +15,14 @@ from log.assets import Logger
 
 """获取exel内容"""
 class TestExcel:
+    """
+    获取表内容
+    Args:
+        excelPath（str）: 表地址
+        result (list): 返回数值
+    Returns:
+        dict or list: 返回表内容
+    """
     def __init__(self):
         self.logger = Logger()
         self.excelPath = ConfigurationFile.configuration_file(CONFIGURATION.EXECELPATH.value)

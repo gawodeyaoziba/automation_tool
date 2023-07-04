@@ -17,15 +17,14 @@ logger = Logger()
 from exel_automation.testcasea.Report.Report import Report
 Report = Report()
 """代理"""
-from Clash_yaml.assets import ClashProxyHandler
-ClashProxyHandler = ClashProxyHandler()
+from exel_automation.testcasea.config import proxies
 
 """模块"""
 import time
 import json
 import requests
 import urllib.request
-proxies = urllib.request.getproxies()
+
 
 
 """接口请求方式单独封装处理"""
@@ -39,7 +38,7 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.BODY.value}:{case_number}{body}')
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
-        response = requests.request(request_method, url, json=body, proxies=ClashProxyHandler.get_proxies())
+        response = requests.request(request_method, url, json=body)
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)
@@ -69,7 +68,7 @@ class Implement:
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
 
-        response = requests.request(request_method, url, json=body, headers=headers_dict, proxies=ClashProxyHandler.get_proxies())
+        response = requests.request(request_method, url, json=body, headers=headers_dict)
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)
@@ -90,7 +89,7 @@ class Implement:
 
         logger.debug(f'{case_title}{EXEL.URL.value}:{case_number}{url}')
         logger.debug(f'{case_title}{EXEL.ASSERTION.value}:{case_number}{assertion}')
-        response = requests.request(request_method, url, proxies=ClashProxyHandler.get_proxies())
+        response = requests.request(request_method, url)
         assertion_config = json.loads(assertion)
         try:
             assertion_template.assertions(response.json(), assertion_config)

@@ -1,7 +1,6 @@
 
 """接口url"""
-from exel_automation.getfile.config import swagger_assets_url
-
+from Config.config import swagger_assets_url
 
 """模块"""
 from utils.my_third_party_modules import requests, json

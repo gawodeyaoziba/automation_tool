@@ -1,5 +1,4 @@
-import json
-import re
+from utils.my_third_party_modules import json, re
 from copy import deepcopy
 
 from log.assets import Logger
@@ -12,12 +11,11 @@ class ToParameterize:
     def replace_parameters(self, data, parameters, response_body):
         """
         替换数据中的参数
-        Args:
-            data (dict): 待处理的数据
-            parameters (list): 参数列表
-            response_body (dict): 响应体
-        Returns:
-            dict: 替换后的数据
+        :param data（dict）: 待处理的数据
+        :param parameters（list）: 参数列表
+        :param response_body（dict）: 响应体
+        :return:
+            updated_data(str): 替换后的数据
         """
         updated_data = deepcopy(data)
         replacements = []  # 存储匹配到的参数及其替换值

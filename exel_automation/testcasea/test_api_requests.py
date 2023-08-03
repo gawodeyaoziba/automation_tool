@@ -22,8 +22,8 @@ from exel_automation.testcasea.test_utils import Replace
 replace = Replace()
 
 """模块"""
-import pytest
-import json
+from utils.my_third_party_modules import pytest, json
+
 
 
 class Test_case:

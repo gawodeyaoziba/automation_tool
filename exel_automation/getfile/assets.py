@@ -4,13 +4,15 @@ from exel_automation.getfile.config import swagger_assets_url
 
 
 """模块"""
-import requests
-import json
+from utils.my_third_party_modules import requests, json
 
 class FileInformation:
-
-    """获取服务器响应地址"""
-    def get_data(self):
+    @staticmethod
+    def get_data():
+        """
+        获取服务器响应地址
+        :return:
+        """
         try:
             response = requests.get(url=swagger_assets_url)
             configuration_data = json.loads(response.text)
@@ -20,6 +22,11 @@ class FileInformation:
 
     """遍历响应文件"""
     def other_function(self, field_name):
+        """
+
+        :param field_name:
+        :return:
+        """
         configurationdata = self.get_data()
         if isinstance(configurationdata, dict):
             for key, value in configurationdata.items():

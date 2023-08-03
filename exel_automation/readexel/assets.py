@@ -1,5 +1,5 @@
 """模块"""
-import xlrd
+from utils.my_third_party_modules import xlrd, json
 
 """枚举"""
 from GloaEnum.GloaEnum import EXEL
@@ -7,8 +7,7 @@ from GloaEnum.GloaEnum import CONFIGURATION
 """路径"""
 from exel_automation.getfile.get_assets import ConfigurationFile
 ConfigurationFile = ConfigurationFile()
-"""模块"""
-import json
+
 
 """日志"""
 from log.assets import Logger

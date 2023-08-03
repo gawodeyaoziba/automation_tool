@@ -105,8 +105,10 @@ class EXAMPLE(Enum):
     OTHERWISE= '此用例执行为否，不执行此用例'
 
 class REPORT(Enum):
-    CASE_NAME = 'case_name'     # 用例名称
-    RUN_RESULT = 'run_result'   # 用例状态
-    RUN_BEGIN_TIME = 'run_begin_time'  # 开始时间
-    RUN_END_TIME = 'run_end_time'       # 结束时间
-    RUN_TIME = 'run_time'           # 耗时
+    CASE_NAME = 'case_name'                     # 用例名称
+    RUN_RESULT = 'run_result'                   # 用例状态
+    RUN_BEGIN_TIME = 'run_begin_time'           # 开始时间
+    RUN_END_TIME = 'run_end_time'               # 结束时间
+    RUN_TIME = 'run_time'                       # 耗时
+    CASE_TITLE = "case_title"                   # 用例标题
+    RESPONSE_DATA = 'response_data'             # 响应数据

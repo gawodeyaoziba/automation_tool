@@ -95,6 +95,7 @@ class AssertionTemplate:
                 return False
         except Exception as e:
             logger.error(f"{ASSERTION.ABNORMAL.value}{str(e)}")
+
     @staticmethod
     def find_key_in_dict(dictionary, key):
         if key in dictionary:

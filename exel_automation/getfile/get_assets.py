@@ -7,7 +7,7 @@ FileInformation = FileInformation()
 from log.assets import Logger
 logger = Logger()
 """模块"""
-import json
+from utils.my_third_party_modules import json
 
 """遍历config.json文件"""
 class ConfigurationFile:

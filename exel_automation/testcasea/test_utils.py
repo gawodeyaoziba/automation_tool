@@ -5,7 +5,7 @@ implement = Implement()
 from GloaEnum.GloaEnum import EXEL
 from GloaEnum.GloaEnum import EXAMPLE
 """参数化"""
-from exel_automation.to_parameterize.assets import ToParameterize
+from utils.parameter_substitution import ToParameterize
 toparameterize = ToParameterize()
 """日志"""
 from log.assets import Logger

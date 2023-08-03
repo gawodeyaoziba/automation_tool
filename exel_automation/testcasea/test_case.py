@@ -2,7 +2,7 @@
 from GloaEnum.GloaEnum import EXAMPLE
 from GloaEnum.GloaEnum import EXEL
 """时间"""
-from Time.assets import Time
+from utils.time import Time
 timestart = Time()
 
 """断言"""
@@ -17,7 +17,7 @@ logger = Logger()
 from exel_automation.testcasea.Report.Report import Report
 Report = Report()
 """代理"""
-from exel_automation.testcasea.config import proxies
+from Config.config import proxies
 
 """模块"""
 from utils.my_third_party_modules import time, json, requests

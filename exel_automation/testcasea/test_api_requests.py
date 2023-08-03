@@ -1,5 +1,5 @@
 """获取exel内容"""
-from exel_automation.readexel.assets import TestExcel
+from utils.read_exel import TestExcel
 testexcel = TestExcel()
 
 """枚举"""

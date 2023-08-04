@@ -22,9 +22,9 @@ class FileInformation:
     """遍历响应文件"""
     def other_function(self, field_name):
         """
-
-        :param field_name:
-        :return:
+        获取配置表子内容信息
+        :param field_name: 读取config配置文件表格主内容
+        :return: 配置表对应子内容
         """
         configurationdata = self.get_data()
         if isinstance(configurationdata, dict):

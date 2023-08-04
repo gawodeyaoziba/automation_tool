@@ -27,6 +27,12 @@ class Time:
 # 定义一个装饰器函数
 def calculate_time(func):
     def wrapper(*args, **kwargs):
+        """
+        装饰器函数使用
+        :param args: 执行函数开始
+        :param kwargs: 执行函数结束
+        :return: 原有函数
+        """
         # 记录函数开始时间
         start_time = time.time()
 

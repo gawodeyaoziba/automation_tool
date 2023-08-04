@@ -1,9 +1,26 @@
 from enum import Enum
 
 class LOGGER(Enum):
-    """日志级别"""
-    DEBUG = 'debug'                 # debug
-    INFO = 'info'                   # info
+    """
+    日志级别
+    参数：
+        :param DEBUG : debug级别日志
+        :param INFO : info级别日志
+        :param ERROR :
+        :param CRITICAL :
+        :param WARNING :
+        :param LOG_LEVELS :
+        :param LOG_FORMAT :
+        :param YMD :
+        :param LOG_FOLDER :
+        :param LOG_FOLDER_DEBUG :
+        :param LOG_FOLDER_INFO :
+        :param LOG_FOLDER_ERROR :
+        :param LOG_FOLDER_CRITICAL :
+        :param LOG_FOLDER_WARNING :
+    """
+    DEBUG = 'debug'                 #
+    INFO = 'info'                   #
     ERROR = 'error'                 # error
     CRITICAL = 'critical'           # critical
     WARNING = 'warning'             # warning
